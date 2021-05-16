@@ -1,0 +1,2 @@
+# xmppbot
+An XMPP Bot
