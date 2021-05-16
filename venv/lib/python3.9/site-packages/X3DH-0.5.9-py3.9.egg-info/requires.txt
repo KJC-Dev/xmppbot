@@ -1,0 +1,2 @@
+cryptography>=1.7.1
+XEdDSA<0.5,>=0.4.7

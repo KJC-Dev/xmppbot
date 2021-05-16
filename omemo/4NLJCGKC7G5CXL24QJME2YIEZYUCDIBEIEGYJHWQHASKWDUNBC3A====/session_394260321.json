@@ -1,0 +1,33 @@
+{
+    "super": {
+        "super": {
+            "super": null,
+            "root_chain": {
+                "length": 1,
+                "key": "HLqMb2+mh+oACB7IwKlBR6acqqINme1D0PHn+9wDxEk="
+            },
+            "own_key": {
+                "super": null,
+                "priv": "QEC7oTBSMkY0hRMEmeKvHabfmaoZepp9tflWZSGEOEo=",
+                "pub": "/EqYqtM2CMlDxQiWOSM5E2oiPbR6lWzilWWUdOk/RW8="
+            },
+            "other_pub": {
+                "super": null,
+                "priv": null,
+                "pub": "ct7IsiXQLQgHBgssIzWQLeEnPZ9TMILzKKM1a5dLTh0="
+            }
+        },
+        "skr": {
+            "super": null,
+            "schain": {
+                "length": 21,
+                "key": "GzLbTCfZjxGUN9uNczfScqebMBEn+oorJPntS2drdok="
+            },
+            "rchain": null,
+            "prev_schain_length": null
+        },
+        "ad": "Be2gYDNUJVrXsL6sHZA85HgPNW97L6CnpZZ35/Ry5tFoBfTmYtHvomn2OeyUXjf8uN1G5suV6a8WEZDk+7PuG0sX",
+        "smks": {}
+    },
+    "other_ik": "9OZi0e+iafY57JReN/y43Ubmy5XprxYRkOT7s+4bSxc="
+}

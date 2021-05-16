@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: X3DH
+Version: 0.5.9
+Summary: A python implementation of the Extended Triple Diffie-Hellman key agreement protocol.
+Home-page: https://github.com/Syndace/python-x3dh
+Author: Tim Henkes
+Author-email: me@syndace.dev
+License: MIT
+Description: [![PyPI](https://img.shields.io/pypi/v/X3DH.svg)](https://pypi.org/project/X3DH/)
+        [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/X3DH.svg)](https://pypi.org/project/X3DH/)
+        [![Build Status](https://travis-ci.org/Syndace/python-x3dh.svg?branch=master)](https://travis-ci.org/Syndace/python-x3dh)
+        
+        # python-x3dh
+        #### A python implementation of the Extended Triple Diffie-Hellman key agreement protocol.
+        
+        This python library offers an implementation of the Extended Triple Diffie-Hellman key agreement protocol (X3DH) as specified [here](https://signal.org/docs/specifications/x3dh/).
+        
+        The goal is to provide a configurable and independent implementation of the protocol, while keeping the structure close to the specification.
+        
+        This library was developed as part of [python-omemo](https://github.com/Syndace/python-omemo), a pretty cool end-to-end encryption protocol.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Communications :: Chat
+Classifier: Topic :: Security :: Cryptography
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, <4
+Description-Content-Type: text/markdown

@@ -1,0 +1,61 @@
+Metadata-Version: 2.1
+Name: slixmpp-omemo
+Version: 0.4.0
+Summary: Slixmpp OMEMO plugin
+Home-page: https://lab.louiz.org/poezio/slixmpp-omemo
+Author: Maxime Buquet
+Author-email: pep@bouah.net
+License: GPLv3
+Description: Slixmpp OMEMO plugin
+        ####################
+        
+        This library provides an interface to `python-omemo <https://github.com/syndace/python-omemo>`_.
+        
+        License
+        -------
+        
+        This plugin is licensed under GPLv3.
+        
+        Note on the underlying OMEMO library
+        ------------------------------------
+        
+        As stated in `python-xeddsa's
+        README <https://github.com/Syndace/python-xeddsa/blob/136b9f12c8286b9463566308963e70f090b60e50/README.md>`_,
+        (dependency of python-omemo), this library has not undergone any
+        security audits. If you have the knowledge, any help is welcome.
+        
+        Please take this into consideration when using this library.
+        
+        Installation
+        ------------
+        
+        - ArchLinux (AUR):
+           `python-slixmpp-omemo <https://aur.archlinux.org/packages/python-slixmpp-omemo>`_, or
+           `python-slixmpp-omemo-git <https://aur.archlinux.org/packages/python-slixmpp-omemo-git>`_
+        - PIP: `slixmpp-omemo`
+        - Manual: `python3 setup.py install`
+        
+        Credits
+        -------
+        
+        For the help on OMEMO:
+        
+        - Syndace
+        - Daniel Gultsch (`gultsch.de <https://gultsch.de/>`_)
+        
+        And on Slixmpp:
+        
+        - Mathieu Pasquet (`mathieui@mathieui.net <xmpp:mathieui@mathieui.net?message>`_)
+        - Emmanuel Gil Peyrot (`Link mauve <xmpp:linkmauve@linkmauve.fr?message>`_)
+        
+Platform: any
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Internet :: XMPP
+Classifier: Topic :: Security :: Cryptography
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/x-rst

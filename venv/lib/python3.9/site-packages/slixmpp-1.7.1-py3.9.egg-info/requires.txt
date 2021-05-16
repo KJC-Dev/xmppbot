@@ -1,0 +1,9 @@
+aiodns>=1.0
+pyasn1
+pyasn1_modules
+
+[XEP-0363]
+aiohttp
+
+[XEP-0444 compliance]
+emoji

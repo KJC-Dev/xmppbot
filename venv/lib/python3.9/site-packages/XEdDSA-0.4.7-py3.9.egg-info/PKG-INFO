@@ -1,0 +1,81 @@
+Metadata-Version: 2.1
+Name: XEdDSA
+Version: 0.4.7
+Summary: A python implementation of the XEdDSA signature scheme.
+Home-page: https://github.com/Syndace/python-xeddsa
+Author: Tim Henkes
+Author-email: me@syndace.dev
+License: MIT
+Description: [![PyPI](https://img.shields.io/pypi/v/XEdDSA.svg)](https://pypi.org/project/XEdDSA/)
+        [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/XEdDSA.svg)](https://pypi.org/project/XEdDSA/)
+        [![Build Status](https://travis-ci.org/Syndace/python-xeddsa.svg?branch=master)](https://travis-ci.org/Syndace/python-xeddsa)
+        
+        # python-xeddsa
+        #### A python implementation of the XEdDSA signature scheme.
+        This python library offers an open implementation of the XEdDSA signature scheme as specified [here](https://signal.org/docs/specifications/xeddsa/).
+        
+        ### !!! IMPORTANT WARNING !!!
+        This code was not written by a cryptographer and is most probably **NOT SECURE**.
+        
+        ### Installation
+        Install the package using pip (`pip install XEdDSA`) or manually using `python setup.py install`, as you're used to.
+        
+        __NOTE__: On UNIX, the installation uses the `cmake` and `make` tools.
+        
+        __NOTE__: On Windows, `cmake` is used and a MinGW environment is required.
+        If compilation fails, precompiled binaries are downloaded during the installation.
+        Make sure you have an active internet connection and access to `https://github.com`.
+        The installation requires the Microsoft Visual C++ Build Tools.
+        Those can be installed using the standalone version you can download [here](https://visualstudio.microsoft.com/downloads/),
+        or as part of Visual Studio, for example the free [Community Edition](https://visualstudio.microsoft.com/vs/community/). 
+        
+        ### Manually building ref10
+        Following section explains how to manually compile the ref10 library, which is __not__ required when using pip or `python setup.py install`.
+        
+        For detailed information on what the ref10 library is and how it was built, look at `ref10/README.md`.
+        
+        #### Building ref10 on UNIX
+        On UNIX, run following commands to build the ref10 library:
+        
+        ```Bash
+        $ cd ref10/
+        $ mkdir build
+        $ cd build/
+        $ cmake -G "Unix Makefiles" ..
+        $ make
+        ```
+        
+        To clean up the build artifacts, just delete the whole build and bin directories inside of the ref10 directory.
+        
+        #### Building ref10 on Windows
+        On Windows, building ref10 is just as simple. Make sure you are in a MinGW environment an run:
+        
+        ```Bash
+        $ cd ref10/
+        $ mkdir build
+        $ cd build/
+        $ cmake -G "MinGW Makefiles" ..
+        $ mingw32-make
+        ```
+        
+        To clean up the build artifacts, just delete the whole build and bin directories inside of the ref10 directory.
+        
+        ### NOTICE
+        This implementation is meant as a transitional solution until one of the big crypto-libraries like libsodium picks up XEdDSA.
+        The [version 1.0 roadmap](https://libsodium.gitbook.io/doc/roadmap) of libsodium lists XEdDSA, it might only take a few more months to get a stable and secure implementation.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Communications :: Chat
+Classifier: Topic :: Security :: Cryptography
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, <4
+Description-Content-Type: text/markdown

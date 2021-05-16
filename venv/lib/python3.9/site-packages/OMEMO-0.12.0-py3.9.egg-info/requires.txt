@@ -1,0 +1,2 @@
+X3DH<0.6,>=0.5.9
+cryptography>=2
