@@ -6,6 +6,7 @@ import sys
 import random
 import asyncio
 import logging
+import time
 from getpass import getpass
 from argparse import ArgumentParser
 
@@ -39,9 +40,9 @@ class WhisperBot(ClientXMPP):
         self.add_event_handler("message", self.message_handler)
         self.use_message_ids = True
 
+
     def diceRoll(self):
         return "Dice Roll Result: " + str(random.randrange(1, 7))
-
 
     def start(self, _event) -> None:
         """
@@ -70,27 +71,47 @@ class WhisperBot(ClientXMPP):
     def message_handler(self, msg: Message) -> None:
         asyncio.ensure_future(self.message(msg))
 
-    def message_keyword_handler(self, messageText, isPrivateMessage):
-        botCommandResponse = None
+    def message_keyword_handler(self, msg, isPrivateMessage):
+        botCommandResponse = "That command was not recognized did you try !help"
+        responseMessage = msg
+        mfrom = msg['from']
         # Dispaly the version number of the bot.
 
         if isPrivateMessage:
+            encrypted = msg['omemo_encrypted']
+            body = self['xep_0384'].decrypt_message(encrypted, mfrom, True)
+            messageText = body.decode("utf8")
             if messageText.startswith("!breadstick"):
                 botCommandResponse = "Its like a dollar a breadstick!"
             elif messageText.startswith("!whisper"):
-                messageTextSplit = messageText.split(" ")
+                # dont use this its kind of broken and makes unstable
+                messageTextSplit = messageText.split(" ", 2)
                 targetJID = messageTextSplit[1]
                 targetMessage = messageTextSplit[2]
-                self.send_message(mto=targetJID, mbody=targetMessage)
-                botCommandResponse = "Message: "+ targetMessage
-
-        # otherwise check for the commands allowed in public
-        if messageText.startswith("!rtd"):
-            botCommandResponse = self.diceRoll()
-        if messageText.startswith("!version"):
-            botCommandResponse = "upperdeckbot version " + versionNumber
+                responseMessage['from'] = targetJID
+                botCommandResponse = targetMessage
+                """
+            elif messageText.startswith("!announce"):
+                messageTextSplit = messageText.split(" ", 2)
+                
+                targetMessage = messageTextSplit[2]
+                userList = self.roster
+                for user in userList:
+                    msg['from'] = user
+                botCommandResponse = targetMessage
+            """
+            # otherwise check for the commands allowed in public rooms
+            elif messageText.startswith("!rtd"):
+                botCommandResponse = self.diceRoll()
+            elif messageText.startswith("!version"):
+                botCommandResponse = "upperdeckbot version " + versionNumber
 
         return botCommandResponse
+
+    async def unencrypted_reply(self, msg):
+        messageBody = msg['body']
+        response = self.message_keyword_handler(messageBody, False)
+        msg.reply(response).send()
 
     async def message(self, msg: Message, allow_untrusted: bool = False) -> None:
         """
@@ -104,34 +125,24 @@ class WhisperBot(ClientXMPP):
                    for stanza objects and the Message stanza to see
                    how it may be used.
         """
-        # Throw out non relevent messages
-        if msg['type'] not in ('chat', 'normal', 'groupchat'):
+        # Throw out non relevent messages and self sent messages to prevent infinite response loops
+        if msg['type'] not in ('chat', 'normal', 'groupchat') or msg['mucnick'] == self.nick:
             return None
+
         # the library for this does not support groupchat encryption so we do group chats unencrypted
         # thus we handle groupchats via a simple unencrypted response
         if msg['type'] == ('groupchat'):
-            messageBody = msg['body']
-            # catch self messages to prevent self flooding
-            if msg['mucnick'] == self.nick:
-                return
-            response = self.message_keyword_handler(messageBody,False)
-            msg.reply(response).send()
-
-
+            self.unencrypted_reply(msg)
         # if the message is private we handle it via a more complex decryption and reencryption process
         else:
             try:
-                mfrom = msg['from']
-                encrypted = msg['omemo_encrypted']
-                body = self['xep_0384'].decrypt_message(encrypted, mfrom, allow_untrusted)
-                bodyDecode = body.decode("utf8")
-                botCommandResponse = self.message_keyword_handler(bodyDecode,True)
+                botCommandResponse = self.message_keyword_handler(msg,True)
                 await self.encrypted_reply(msg, botCommandResponse)
                 return None
             except (MissingOwnKey,):
                 # The message is missing our own key, it was not encrypted for
                 # us, and we can't decrypt it.
-                await self.plain_reply(
+                await self.message(
                     msg,
                     'I can\'t decrypt this message as it is not encrypted for me.',
                 )
@@ -158,7 +169,7 @@ class WhisperBot(ClientXMPP):
                 # or not. Clients _should_ indicate that the message was not
                 # trusted, or in undecided state, if they decide to decrypt it
                 # anyway.
-                await self.plain_reply(
+                await self.message(
                     msg,
                     "Your device '%s' is not in my trusted devices." % exn.device,
                 )
@@ -169,10 +180,10 @@ class WhisperBot(ClientXMPP):
                 # Slixmpp tried its best, but there were errors it couldn't
                 # resolve. At this point you should have seen other exceptions
                 # and given a chance to resolve them already.
-                await self.plain_reply(msg, 'I was not able to decrypt the message.')
+                await self.message(msg, 'I was not able to decrypt the message.')
                 return None
             except (Exception,) as exn:
-                await self.plain_reply(msg, 'An error occured while attempting decryption.\n%r' % exn)
+                await self.message(msg, 'An error occured while attempting decryption.\n%r' % exn)
                 raise
             return None
 

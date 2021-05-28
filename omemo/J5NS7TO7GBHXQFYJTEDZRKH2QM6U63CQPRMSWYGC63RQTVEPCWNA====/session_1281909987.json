@@ -4,12 +4,12 @@
             "super": null,
             "root_chain": {
                 "length": 1,
-                "key": "xhXUrOppKErcSk1emy7c72FZyrv+2I9+1qffeZTRqRU="
+                "key": "+970pownnWSIlwmnxTVMOZO2K3l8ulgHV22/P657cZ4="
             },
             "own_key": {
                 "super": null,
-                "priv": "QCFd24EpZZiNwjwXuGAEhMEmvJlkrzfObWj9FBg6lVc=",
-                "pub": "alvR0gQzPcAWW/IXyfNLYbKAoXP0Zk1y4IW4oT77ggA="
+                "priv": "UL8HeT1fu8k7bBjI7DHZJ/3CKn3DbH6jzFuU6jh/5Xc=",
+                "pub": "QGyhQaKsUY/8AysDZAa6Ui32NgVufWAzfzXkE5QylRA="
             },
             "other_pub": {
                 "super": null,
@@ -20,13 +20,13 @@
         "skr": {
             "super": null,
             "schain": {
-                "length": 21,
-                "key": "C1zuFSipXpYe3mbiU7QAxqyCpPsJIRFhp2c2UnphFnQ="
+                "length": 12,
+                "key": "MGY2FVwxZ4vyj72iHLxIhKzLROwuL4u75rbXzhRKi7Y="
             },
             "rchain": null,
             "prev_schain_length": null
         },
-        "ad": "Be2gYDNUJVrXsL6sHZA85HgPNW97L6CnpZZ35/Ry5tFoBc7UFKTb2BBQOG5Gy1UQpGZZkIvEdTLlP/v80XiqUn4W",
+        "ad": "BVRsr0UtVnUfJ4lLzfP4rBHB3wFSbHek5MM5R9x9wg41Bc7UFKTb2BBQOG5Gy1UQpGZZkIvEdTLlP/v80XiqUn4W",
         "smks": {}
     },
     "other_ik": "ztQUpNvYEFA4bkbLVRCkZlmQi8R1MuU/+/zReKpSfhY="
